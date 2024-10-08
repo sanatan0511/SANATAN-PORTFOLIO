@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanatan Singh's Portfolio</title>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: url('https://th.bing.com/th/id/R.60336657091d86bf4755f7c888e614ed?rik=TCWKLLCDubfk5g&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f08%2fAndromeda-Galaxy-Milky-Way.jpg&ehk=plGXCabGQ7dAx6YArvO0TQgNmO5%2fwPr1PYQ3sXk9KTQ%3d&risl=1&pid=ImgRaw&r=0') no-repeat center center/cover;
+            color: white;
+            transition: background 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor */
+        body, a {
+            cursor: url('custom-cursor.png'), auto;
+        }
+
+        /* Dark/Light Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Hero Section */
+        header.hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .content-center {
+            max-width: 900px;
+            animation: slideDown 2s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-photo img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            color: #f76c6c;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1.5em;
+        }
+
+        .intro-buttons {
+            margin: 30px 0;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .primary-btn {
+            background-color: #f76c6c;
+            color: #fff;
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+        }
+
+        /* Languages Section */
+        .languages {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .language-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.5s;
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-card i {
+            font-size: 3em;
+            color: #f76c6c;
+            margin-bottom: 15px;
+        }
+
+        .language-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        /* Skill Progress Bars */
+        .skill-bar {
+            width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .skill-progress {
+            background-color: #f76c6c;
+            height: 100%;
+            transition: width 0.6s ease-in-out;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-size: 1.2em;
+            line-height: 1.6em;
+            color: #fff;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .portfolio h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .portfolio .project-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .project-card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        /* Links Section */
+        .links {
+            padding: 40px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .links h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .link-item {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 1.5em;
+            color: #f76c6c;
+            transition: transform 0.3s;
+        }
+
+        .link-item:hover {
+            transform: scale(1.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .contact-form button {
+            padding: 10px;
+            background-color: #f76c6c;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #e74c3c;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        footer p {
+            color: white;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()">Toggle Dark/Light Mode</div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="content-center">
+            <div class="intro-photo">
+                <img src="C:\Users\rashm\Downloads\portfolio\sanatan.jpg" alt="Sanatan Singh">
+            </div>
+            <h1>Hello, I'm Sanatan Singh!</h1>
+            <h2>Aspiring AI & Machine Learning Engineer</h2>
+            <div class="intro-buttons">
+                <a href="https://sanatanportfolio4811.my.canva.site/" class="btn primary-btn" target="_blank"> Resume page</a>
+                <button class="btn secondary-btn" onclick="scrollToContact()">Contact Me</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Languages Section -->
+    <section class="languages">
+        <div class="language-card">
+            <i class="fab fa-python"></i>
+            <h3>Python</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fab fa-html5"></i>
+            <h3>HTML5</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fab fa-css3-alt"></i>
+            <h3>CSS</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fab fa-js"></i>
+            <h3>JavaScript</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fas fa-database"></i>
+            <h3>DBMS</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fas fa-code"></i>
+            <h3>C Programming</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 65%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fas fa-cogs"></i>
+            <h3>C++</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 60%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fas fa-network-wired"></i>
+            <h3>Neural Networks</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div>
+        </div>
+        <div class="language-card">
+            <i class="fas fa-code-branch"></i>
+            <h3>DSA</h3>
+            <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Me</h2>
+        <p>A second-year Computer Science and Engineering student at Lovely Professional University, I am deeply passionate about Artificial Intelligence (AI) and Machine Learning (ML). My academic focus and personal interests converge on leveraging these technologies to drive innovation and solve complex problems.
+
+            Technical Skills:
+            
+            Programming Languages: Python, C++
+            Machine Learning Frameworks: TensorFlow, Keras, PyTorch
+            AI Techniques: Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs)
+            Data Analysis: Pandas, NumPy, Scikit-learn
+            Computer Vision: OpenCV, Image Processing
+            Generative AI: GANs, Transfer Learning
+            Throughout my studies, I have engaged in various research projects and practical assignments that have honed my skills. Notable experiences include:
+            
+            Developing a CNN model for image classification, achieving a high accuracy rate on benchmark datasets.
+            Implementing an RNN model to analyze sequential data, which has improved prediction accuracy in real-world scenarios.
+            Exploring Generative AI techniques to create innovative solutions and applications in content generation.
+            I thrive on tackling complex challenges and am committed to continuous learning and improvement. My goal is to contribute meaningfully to the field of AI and ML, leveraging my skills to drive technological advancements and innovations.
+            
+            An avid learner since childhood, I am an AI enthusiast driven by curiosity and ambition. Always eager to explore and absorb new knowledge about A.l and latest tech with studies, I find joy in the passive yet profound process of study. Believing that AI has the potential to be a game-changer, my childhood dream of becoming an AI and ML engineer fuels my relentless pursuit of understanding and innovation. Ready to turn dreams into reality. #AICuriousMind #AmbitiousLearner #FutureAIMLEngineer #passive
+            
+            I am actively seeking opportunities to apply my expertise in real-world projects and collaborations. If you are interested in discussing AI/ML advancements or exploring potential opportunities, please feel free to connect.
+            
+            Currently, i am a member of optimyzer, gdsc lead member . and continously learning new skills and showcase my carrer in real world . 
+            
+            Thank you :) As a second-year Computer Science and Engineering student at Lovely Professional University, I am deeply passionate about Artificial Intelligence (AI) and Machine Learning (ML). My academic focus and personal interests converge on leveraging these technologies to drive innovation and solve complex problems. Technical Skills: Programming Languages: Python, C++ Machine Learning Frameworks: TensorFlow, Keras, PyTorch AI Techniques: Convolutional Neural Networks (CNNs), Recurrent Neural Networks (RNNs) Data Analysis: Pandas, NumPy, Scikit-learn Computer Vision: OpenCV, Image Processing Generative AI: GANs, Transfer Learning Throughout my studies, I have engaged in various research projects and practical assignments that have honed my skills. Notable experiences include: Developing a CNN model for image classification, achieving a high accuracy rate on benchmark datasets. Implementing an RNN model to analyze sequential data, which has improved prediction accuracy in real-world scenarios. Exploring Generative AI techniques to create innovative solutions and applications in content generation. I thrive on tackling complex challenges and am committed to continuous learning and improvement. My goal is to contribute meaningfully to the field of AI and ML, leveraging my skills to drive technological advancements and innovations. An avid learner since childhood, I am an AI enthusiast driven by curiosity and ambition. Always eager to explore and absorb new knowledge about A.l and latest tech with studies, I find joy in the passive yet profound process of study. Believing that AI has the potential to be a game-changer, my childhood dream of becoming an AI and ML engineer fuels my relentless pursuit of understanding and innovation. Ready to turn dreams into reality. #AICuriousMind #AmbitiousLearner #FutureAIMLEngineer #passive I am actively seeking opportunities to apply my expertise in real-world projects and collaborations. If you are interested in discussing AI/ML advancements or exploring potential opportunities, please feel free to connect. Currently, i am a member of optimyzer, gdsc lead member . and continously learning new skills and showcase my carrer in real world . Thank you :)
+            Top skills
+            Top skills
+            Applied Mathematics • Computational Mathematics • SQL •  ADV. Python (Programming Language) • PyTorch.</p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+        <h2>My Projects</h2>
+        <div class="project-cards">
+            <div class="project-card">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/19/53/93/1000_F_519539330_2lLIY8meek3HLoirPw0SDwhIaFc22IPc.jpg" alt="Project 1">
+                <h3>KUTUMBAKAM SETU</h3>
+                <p> a project focused on disaster help and leveraging AI. Overcoming current AI issues is a common challenge, but the prospect of restarting services with improved capabilities in the future is promising.</p>
+            </div>
+            <div class="project-card">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/19/53/93/1000_F_519539330_2lLIY8meek3HLoirPw0SDwhIaFc22IPc.jpg" alt="Project 2">
+                <h3>UNI SEVA</h3>
+                <p>Creating a specialized section for Lovely Professional University students adds a personal touch. Tailoring content to their needs, perhaps including relevant health tips for students, can make the website more appealing and valuable for the university community.That sounds like a fantastic idea! Enhancing the hospital website with a symptom-checker, appointment booking, and detailed disease information can greatly improve user experience and accessibility. Consider incorporating a user-friendly interface and engaging visuals to make it even more appealing.</p>
+            </div>
+            <div class="project-card">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/19/53/93/1000_F_519539330_2lLIY8meek3HLoirPw0SDwhIaFc22IPc.jpg" alt="Project 3">
+                <h3>HARI - IMAGE PROCESSING </h3>
+                <p>image processing using linear regression ml</p>
+            </div>
+            <div class="project-card">
+                <img src="https://as2.ftcdn.net/v2/jpg/05/19/53/93/1000_F_519539330_2lLIY8meek3HLoirPw0SDwhIaFc22IPc.jpg" alt="Project 4">
+                <h4>ELECTION system  </h4>
+                <p>a new way of election system using ml</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section class="links">
+        <h2>Connect with Me</h2>
+        <a href="https://github.com/sanatan0511" class="link-item"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/sanatan-singh-4811singh/" class="link-item"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.geeksforgeeks.org/user/sanatan4811/" class="link-item"><i class="fas fa-blog"></i></a>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Contact Me</h2>
+        <div class="contact-info">
+            <p>Email: sanatansingh23@lpu.in</p>
+            <p>Phone: +91 7260968719</p>
+        </div>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Sanatan Singh. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle Dark/Light Mode
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Scroll to Contact Section
+        function scrollToContact() {
+            document.querySelector('.contact').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
