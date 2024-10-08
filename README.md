@@ -332,7 +332,7 @@
     <header class="hero">
         <div class="content-center">
             <div class="intro-photo">
-                <img src="https://drive.google.com/file/d/1--ISnxbAwJPgH6B5SUlCKrJf2VOhShS6/view" alt="Sanatan Singh">
+                <img src="https://i.imgur.com/qjHq7To.jpeg" alt="Sanatan Singh">
             </div>
             <h1>Hello, I'm Sanatan Singh!</h1>
             <h2>Aspiring AI & Machine Learning Engineer</h2>
